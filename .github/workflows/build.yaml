@@ -24,6 +24,8 @@ jobs:
         version: v1.55.2
     - name: Build
       run: make build-all
+    - run: bin/lindorm-cli_linux-amd64 --help
+    - run: bin/lindorm-cli_linux-amd64 --version
     - uses: actions/upload-artifact@v3
       with:
         name: binaries

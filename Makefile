@@ -5,12 +5,12 @@ build:
 .PHONY: clean
 clean:
 	rm -rf lindorm-cli
-	rm -rf bin/lindorm-*
+	rm -rf bin/lindorm-cli-*
 
 .PHONY: build-macos
 build-macos:
 	GOOS=darwin GOARCH=amd64 go build -o bin/lindorm-cli_darwin-amd64
-	GOOS=darwin GOARCH=arm64 go build -o bin/lindorm-cli-darwin-arm64
+	GOOS=darwin GOARCH=arm64 go build -o bin/lindorm-cli_arwin-arm64
 
 .PHONY: build-linux
 build-linux:
