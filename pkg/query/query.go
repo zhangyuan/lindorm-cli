@@ -1,59 +1,34 @@
-package pkg
+package query
 
 import (
 	"context"
-	"fmt"
 	"lindorm-cli/pkg/client"
-	"log"
-	"os"
+	"lindorm-cli/pkg/config"
+	"lindorm-cli/pkg/render"
 )
 
-func MustGet(key string) (string, error) {
-	value := os.Getenv(key)
-	if value == "" {
-		return "", fmt.Errorf("env variable %s is not set", value)
-	}
-	return value, nil
-}
-
-func Invoke(statement string) {
-	resp, err := query(statement)
+func Invoke(statement string) error {
+	conf, err := config.GetConfiguration()
 	if err != nil {
-		log.Fatalf("err: %v", err)
+		return err
 	}
 
-	render(resp)
-}
+	resp, err := query(conf, statement)
+	if err != nil {
+		return err
+	}
 
-func render(resp *client.QueryResponse) error {
-	fmt.Println(*resp)
+	render.Render(resp)
+
 	return nil
 }
 
-func query(statement string) (*client.QueryResponse, error) {
-	endpoint, err := MustGet("ENDPOINT")
-	if err != nil {
-		return nil, err
-	}
-
-	database, err := MustGet("DATABASE")
-	if err != nil {
-		return nil, err
-	}
-
-	username, err := MustGet("USERNAME")
-	if err != nil {
-		return nil, err
-	}
-	password, err := MustGet("password")
-	if err != nil {
-		return nil, nil, err
-	}
+func query(conf *config.Configuration, statement string) (*client.QueryResponse, error) {
 	client := client.NewClient(
-		endpoint,
-		database,
-		username,
-		password,
+		conf.Endpoint,
+		conf.Database,
+		conf.Username,
+		conf.Password,
 	)
 
 	context := context.Background()

@@ -19,6 +19,7 @@ type Client struct {
 
 func NewClient(endpoint string, database string, username string, password string) *Client {
 	client := resty.New()
+	client.DisableWarn = true
 
 	return &Client{
 		httpClient: client,

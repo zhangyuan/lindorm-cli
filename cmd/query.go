@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	query "lindorm-cli/pkg"
+	"lindorm-cli/pkg/query"
 	"log"
 	"os"
 

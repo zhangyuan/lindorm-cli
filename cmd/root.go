@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"lindorm-cli/pkg/prompt"
+	"log"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -9,7 +11,11 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "lindorm-cli",
 	Short: "A lindorm-cli with less bugs",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Run: func(cmd *cobra.Command, args []string) {
+		if err := prompt.Prompt(); err != nil {
+			log.Fatalf("error: %v", err)
+		}
+	},
 }
 
 func Execute() {
