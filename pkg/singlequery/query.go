@@ -18,9 +18,7 @@ func Invoke(statement string) error {
 		return err
 	}
 
-	render.Render(resp)
-
-	return nil
+	return render.Render(resp)
 }
 
 func query(conf *config.Configuration, statement string) (*client.QueryResponse, error) {

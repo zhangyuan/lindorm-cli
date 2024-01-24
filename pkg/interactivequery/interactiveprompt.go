@@ -38,7 +38,9 @@ func RunPrompt() error {
 		if err != nil {
 			log.Printf("error: %v", err)
 		} else {
-			render.Render(resp)
+			if err := render.Render(resp); err != nil {
+				log.Printf("error: %v", err)
+			}
 		}
 	}
 
