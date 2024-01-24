@@ -1,6 +1,6 @@
 # lindorm-cli
 
-Unoffical Lindorm CLI, written in Go and with better developer experience and less bugs.
+Unoffical Lindorm CLI for TSDB （时序引擎）, written in Go and with better developer experience and less bugs.
 
 ## Usage
 
