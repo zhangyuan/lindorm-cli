@@ -29,5 +29,5 @@ jobs:
     - uses: actions/upload-artifact@v3
       with:
         name: binaries
-        path: bin/lindorm-cli-*
+        path: bin/lindorm-cli*
         retention-days: 3
