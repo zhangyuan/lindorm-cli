@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"lindorm-cli/pkg/prompt"
+	"lindorm-cli/pkg/interactivequery"
 	"log"
 	"os"
 
@@ -12,7 +12,7 @@ var rootCmd = &cobra.Command{
 	Use:   "lindorm-cli",
 	Short: "A lindorm-cli with less bugs",
 	Run: func(cmd *cobra.Command, args []string) {
-		if err := prompt.Prompt(); err != nil {
+		if err := interactivequery.RunPrompt(); err != nil {
 			log.Fatalf("error: %v", err)
 		}
 	},

@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"lindorm-cli/pkg/query"
+	"lindorm-cli/pkg/singlequery"
 	"log"
 	"os"
 
@@ -20,11 +20,11 @@ var queryCmd = &cobra.Command{
 			if err != nil {
 				log.Fatalf("%v", err)
 			}
-			if err := query.Invoke(string(bytes)); err != nil {
+			if err := singlequery.Invoke(string(bytes)); err != nil {
 				log.Fatalf("%v", err)
 			}
 		} else {
-			if err := query.Invoke(statement); err != nil {
+			if err := singlequery.Invoke(statement); err != nil {
 				log.Fatalf("%v", err)
 			}
 		}

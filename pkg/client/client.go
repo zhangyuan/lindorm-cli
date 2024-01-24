@@ -55,12 +55,12 @@ func (client *Client) Query(context context.Context, statement string) (*QueryRe
 		SetResult(&queryResponse).
 		Post(uri)
 
-	if resp.StatusCode() != 200 {
-		return nil, errors.New(resp.String())
-	}
-
 	if err != nil {
 		return nil, err
+	}
+
+	if resp.StatusCode() != 200 {
+		return nil, errors.New(resp.String())
 	}
 
 	return &queryResponse, nil
