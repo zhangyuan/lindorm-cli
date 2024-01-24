@@ -11,6 +11,8 @@ import (
 	"github.com/c-bata/go-prompt"
 )
 
+const exitCommand = "exit"
+
 func completer(d prompt.Document) []prompt.Suggest {
 	s := []prompt.Suggest{}
 	return prompt.FilterHasPrefix(s, d.GetWordBeforeCursor(), true)
@@ -43,7 +45,7 @@ func RunPrompt() error {
 	exitCheckOnInput := func(in string, breakline bool) bool {
 		return strings.TrimRightFunc(in, func(r rune) bool {
 			return r == ';' || r == ' '
-		}) == "exit" && breakline
+		}) == exitCommand && breakline
 	}
 
 	p := prompt.New(
