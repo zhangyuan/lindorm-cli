@@ -19,6 +19,28 @@ PASSWORD=password
 DATABASE=database
 ```
 
+### Help
+
+```
+$ lindorm-cli --help
+A lindorm-cli with less bugs
+
+Usage:
+  lindorm-cli [flags]
+  lindorm-cli [command]
+
+Available Commands:
+  completion  Generate the autocompletion script for the specified shell
+  help        Help about any command
+  query       query the data via SQL statements
+
+Flags:
+  -h, --help      help for lindorm-cli
+  -v, --version   version for lindorm-cli
+
+Use "lindorm-cli [command] --help" for more information about a command.
+```
+
 ### Run interactive command line interface
 
 ```bash
