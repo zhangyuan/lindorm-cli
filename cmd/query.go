@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/spf13/cobra"
+	"github.com/subosito/gotenv"
 )
 
 var statement string
@@ -15,6 +16,10 @@ var queryCmd = &cobra.Command{
 	Use:   "query",
 	Short: "query the data via SQL statements",
 	Run: func(cmd *cobra.Command, args []string) {
+		if err := gotenv.Load(); err != nil {
+			log.Fatalf("error: %v", err)
+		}
+
 		if statementFile != "" {
 			bytes, err := os.ReadFile(statementFile)
 			if err != nil {
