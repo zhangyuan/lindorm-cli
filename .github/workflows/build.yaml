@@ -17,6 +17,7 @@ jobs:
     - uses: actions/setup-go@v4
       with:
         go-version: '1.21.1'
+    - run: sed -i 's/snapshot/${{ github.ref_name }}/' pkg/version/version.go
     - name: golangci-lint
       uses: golangci/golangci-lint-action@v3
       with:
