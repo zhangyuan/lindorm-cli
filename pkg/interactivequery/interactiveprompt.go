@@ -63,7 +63,6 @@ func RunPrompt() error {
 		completer,
 		prompt.OptionPrefix(configuration.Database+" > "),
 		prompt.OptionSetExitCheckerOnInput(exitCheckOnInput),
-		prompt.SwitchKeyBindMode(prompt.CommonKeyBind),
 	)
 	p.Run()
 
