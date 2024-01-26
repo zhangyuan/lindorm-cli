@@ -26,6 +26,11 @@ jobs:
       run: make build-all
     - run: bin/lindorm-cli_linux-amd64 --help
     - run: bin/lindorm-cli_linux-amd64 --version
+    - name: Install UPX
+      uses: crazy-max/ghaction-upx@v3
+      with:
+        install-only: true
+    - run: make compress
     - uses: actions/upload-artifact@v3
       with:
         name: binaries

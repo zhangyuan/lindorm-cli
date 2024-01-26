@@ -5,7 +5,7 @@ build:
 .PHONY: clean
 clean:
 	rm -rf lindorm-cli
-	rm -rf bin/lindorm-cli-*
+	rm -rf bin/lindorm-cli_*
 
 .PHONY: build-macos
 build-macos:
@@ -18,3 +18,7 @@ build-linux:
 
 .PHONE: build-all
 build-all: clean build-macos build-linux
+
+.PHONE: compress
+compress:
+	upx ./bin/lindorm-cli_*
