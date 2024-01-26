@@ -2,10 +2,10 @@ package interactivequery
 
 import (
 	"context"
+	"fmt"
 	"lindorm-cli/pkg/client"
 	"lindorm-cli/pkg/config"
 	"lindorm-cli/pkg/render"
-	"log"
 	"strings"
 
 	"github.com/c-bata/go-prompt"
@@ -33,21 +33,29 @@ func RunPrompt() error {
 
 	context := context.Background()
 
+	isExitCommand := func(in string) bool {
+		return strings.TrimRightFunc(in, func(r rune) bool {
+			return r == ';' || r == ' '
+		}) == exitCommand
+	}
+
 	executor := func(in string) {
+		if isExitCommand(in) {
+			return
+		}
+
 		resp, err := client.Query(context, in)
 		if err != nil {
-			log.Printf("error: %v", err)
+			fmt.Printf("error: %v\n", err)
 		} else {
 			if err := render.Render(resp); err != nil {
-				log.Printf("error: %v", err)
+				fmt.Printf("error: %v\n", err)
 			}
 		}
 	}
 
 	exitCheckOnInput := func(in string, breakline bool) bool {
-		return strings.TrimRightFunc(in, func(r rune) bool {
-			return r == ';' || r == ' '
-		}) == exitCommand && breakline
+		return isExitCommand(in) && breakline
 	}
 
 	p := prompt.New(
@@ -55,8 +63,11 @@ func RunPrompt() error {
 		completer,
 		prompt.OptionPrefix(configuration.Database+" > "),
 		prompt.OptionSetExitCheckerOnInput(exitCheckOnInput),
+		prompt.SwitchKeyBindMode(prompt.CommonKeyBind),
 	)
 	p.Run()
+
+	fmt.Println("Bye!")
 
 	return nil
 }

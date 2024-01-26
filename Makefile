@@ -16,11 +16,5 @@ build-macos:
 build-linux:
 	GOOS=linux GOARCH=amd64 go build -o bin/lindorm-cli_linux-amd64
 
-
-.PHONE: build-windows
-build-windows:
-	GOOS=windows GOARCH=386 go build -o bin/lindorm-cli_windows-386.exe
-	GOOS=windows GOARCH=amd64 go build -o bin/lindorm-cli_windows-amd64.exe
-
 .PHONE: build-all
-build-all: clean build-macos build-linux build-windows
+build-all: clean build-macos build-linux
