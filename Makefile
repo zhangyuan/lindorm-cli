@@ -20,5 +20,5 @@ build-linux:
 build-all: clean build-macos build-linux
 
 .PHONE: compress
-compress:
-	upx ./bin/lindorm-cli_*
+compress-linux:
+	upx ./bin/lindorm-cli_linux*
