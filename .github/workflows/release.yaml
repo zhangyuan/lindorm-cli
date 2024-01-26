@@ -25,6 +25,11 @@ jobs:
         version: v1.55.2
     - name: Build
       run: make build-all
+    - name: Install UPX
+      uses: crazy-max/ghaction-upx@v3
+      with:
+        install-only: true
+    - run: make compress-linux
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
       with:
